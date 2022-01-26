@@ -1,11 +1,17 @@
 import React from "react";
+import { useShowerThoughtsContext } from "../context/ShowerThoughtsContext";
 import "./ShowerThoughts.css";
 
-const ShowerThoughts = ({ showerThoughts }) => {
+const ShowerThoughts = ({}) => {
+  const { showerThoughts, viewShowerThoughts } = useShowerThoughtsContext();
   return (
     <div className="wrapper">
-      {showerThoughts &&
-        showerThoughts.map((el) => <div className="grid">{el}</div>)}
+      {viewShowerThoughts &&
+        showerThoughts.map((el) => (
+          <div className="grid" key={Math.random().toString(36).substr(0, 5)}>
+            {el}
+          </div>
+        ))}
     </div>
   );
 };
