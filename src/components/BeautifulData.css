@@ -1,0 +1,12 @@
+/* .grid {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fill, 400px);
+}
+.grid-items {
+  border: 1px solid green;
+}
+
+img {
+  transform: scale(0.5);
+} */
