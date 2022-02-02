@@ -1,16 +1,20 @@
 import React from "react";
 import { useBeautifulData } from "../context/BeautifulDataContext";
+import { useTagContext } from "../context/TagContext";
 import "./BeautifulData.css";
 const BeautifulData = () => {
   const { beautifulData } = useBeautifulData();
-  console.log(beautifulData);
+  const { tagClicked } = useTagContext();
+  console.log(tagClicked);
   return (
-    <div className="grid">
-      {beautifulData.map((e) => {
-        return (
-          <img src={e.data.url} alt={e.data.topic} className="grid-items" />
-        );
-      })}
+    <div>
+      {tagClicked === "Beautiful Data" && (
+        <div id="imgParent">
+          {beautifulData.map((img, index) => {
+            return <img src={img.data.url} alt={img.data.topic} key={index} />;
+          })}
+        </div>
+      )}
     </div>
   );
 };

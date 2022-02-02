@@ -5,10 +5,10 @@ import { useTagContext } from "../context/TagContext";
 
 const ShowerThoughts = () => {
   const { showerThoughts } = useShowerThoughtsContext();
-  const { viewShowerThoughts } = useTagContext();
+  const { tagClicked } = useTagContext();
   return (
     <div className="wrapper">
-      {viewShowerThoughts &&
+      {tagClicked === "Shower Thoughts" &&
         showerThoughts.map((el) => (
           <div className="grid" key={Math.random().toString(36).substr(0, 5)}>
             {el}
