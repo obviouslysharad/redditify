@@ -4,6 +4,7 @@ import { useTagContext } from "../context/TagContext";
 import "./BeautifulData.css";
 const BeautifulData = () => {
   const { beautifulData } = useBeautifulData();
+  console.log(beautifulData);
   const { tagClicked } = useTagContext();
   console.log(tagClicked);
   return (

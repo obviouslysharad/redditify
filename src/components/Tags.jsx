@@ -13,7 +13,14 @@ const Tags = () => {
       >
         Shower Thoughts
       </button>
-      <button className="btn">Memes</button>
+      <button
+        className="btn"
+        onClick={(e) => {
+          tagClickedHandler(e);
+        }}
+      >
+        Memes
+      </button>
       <button
         className="btn"
         onClick={(e) => {
@@ -22,7 +29,22 @@ const Tags = () => {
       >
         Beautiful Data
       </button>
-      <button className="btn">Wallpapers</button>
+      <button
+        className="btn"
+        onClick={(e) => {
+          tagClickedHandler(e);
+        }}
+      >
+        Black Magic
+      </button>
+      <button
+        className="btn"
+        onClick={(e) => {
+          tagClickedHandler(e);
+        }}
+      >
+        Wallpapers
+      </button>
     </div>
   );
 };
