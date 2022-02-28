@@ -7,8 +7,10 @@ import BeautifulData from "./components/BeautifulData";
 import BlackMagic from "./components/BlackMagic";
 import Memes from "./components/Memes";
 import Wallpapers from "./components/Wallpapers";
+import { useTagContext } from "./context/TagContext";
 
 function App() {
+  const { tagClicked } = useTagContext();
   return (
     <div className="App">
       <Header />
@@ -17,7 +19,7 @@ function App() {
       <BeautifulData />
       <BlackMagic />
       <Memes />
-      <Wallpapers />
+      {tagClicked == "Wallpapers" && <Wallpapers />}
     </div>
   );
 }

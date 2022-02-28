@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
+import React, { useState, createContext, useContext } from "react";
 
 export const ShowerThoughtsConCreate = createContext();
 const ShowerThoughtsContext = ({ children }) => {
