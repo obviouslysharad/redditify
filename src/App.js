@@ -15,11 +15,11 @@ function App() {
     <div className="App">
       <Header />
       <Tags />
-      <ShowerThoughts />
-      <BeautifulData />
+      {tagClicked === "Shower Thoughts" && <ShowerThoughts />}
+      {tagClicked === "BeautifulData" && <BeautifulData />}
       <BlackMagic />
-      <Memes />
-      {tagClicked == "Wallpapers" && <Wallpapers />}
+      {tagClicked === "Memes" && <Memes />}
+      {tagClicked === "Wallpapers" && <Wallpapers />}
     </div>
   );
 }

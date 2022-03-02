@@ -4,17 +4,12 @@ import { useTagContext } from "../context/TagContext";
 
 const Wallpapers = () => {
   const { wallpapers, fetchMemes } = useWallpaperContext();
-  const { tagClicked } = useTagContext();
-  console.log("inside wallpapers");
   let interval = null;
   const intersecob = new IntersectionObserver(([data]) => {
     data.isIntersecting && fetchMemes();
   });
-  // tagClicked === "Wallpapers" &&
-  //   wallpapers.length > 40 &&
 
   React.useEffect(() => intersecob.observe(document.getElementById("lastEl")));
-  React.useEffect(() => console.log("without args"));
   React.useEffect(() => console.log("with empty args", []));
 
   const renderWallpapers = (index, data) => {
@@ -22,6 +17,7 @@ const Wallpapers = () => {
     return index < wallpapers.length - 2 ? (
       <img
         key={data.data.id}
+        id="hey"
         style={{
           width: "400px",
           height: "500px",
@@ -48,7 +44,7 @@ const Wallpapers = () => {
   };
   return (
     <div>
-      {tagClicked === "Wallpapers" && (
+      {
         <div
           id="imgbar"
           style={{
@@ -65,7 +61,7 @@ const Wallpapers = () => {
               renderWallpapers(index, data)
           )}
         </div>
-      )}
+      }
       <button
         style={{
           position: "fixed",

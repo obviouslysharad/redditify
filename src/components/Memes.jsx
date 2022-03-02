@@ -1,19 +1,24 @@
 import React from "react";
 import { useMemeContext } from "../context/MemeContext";
-import { useTagContext } from "../context/TagContext";
 
 const Memes = () => {
   const memeState = useMemeContext();
-  const { tagClicked } = useTagContext();
+  console.log(memeState);
   return (
     <div>
-      {memeState && tagClicked === "Memes" && (
-        <div id="imgParent">
-          {memeState.map((el) => {
-            return <img alt={el.data.title} src={el.data.url} />;
-          })}
+      {
+        <div id="temp">
+          {memeState &&
+            memeState.map((el) => {
+              if (
+                el.data.post_hint === "image" &&
+                el.data.url.slice(el.data.url.length - 4) === ".img"
+              )
+                return <img alt={el.data.title} src={el.data.url} />;
+              return <div>hi</div>;
+            })}
         </div>
-      )}
+      }
     </div>
   );
 };
