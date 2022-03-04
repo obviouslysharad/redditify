@@ -16,7 +16,7 @@ function App() {
       <Header />
       <Tags />
       {tagClicked === "Shower Thoughts" && <ShowerThoughts />}
-      {tagClicked === "BeautifulData" && <BeautifulData />}
+      {tagClicked === "Beautiful Data" && <BeautifulData />}
       <BlackMagic />
       {tagClicked === "Memes" && <Memes />}
       {tagClicked === "Wallpapers" && <Wallpapers />}

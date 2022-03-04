@@ -44,7 +44,7 @@ const Wallpapers = () => {
   };
   return (
     <div>
-      {
+      {wallpapers && (
         <div
           id="imgbar"
           style={{
@@ -61,7 +61,7 @@ const Wallpapers = () => {
               renderWallpapers(index, data)
           )}
         </div>
-      }
+      )}
       <button
         style={{
           position: "fixed",

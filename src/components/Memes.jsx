@@ -3,19 +3,16 @@ import { useMemeContext } from "../context/MemeContext";
 
 const Memes = () => {
   const memeState = useMemeContext();
-  console.log(memeState);
   return (
     <div>
       {
-        <div id="temp">
+        <div className="imageContainer">
           {memeState &&
             memeState.map((el) => {
-              if (
-                el.data.post_hint === "image" &&
-                el.data.url.slice(el.data.url.length - 4) === ".img"
-              )
-                return <img alt={el.data.title} src={el.data.url} />;
-              return <div>hi</div>;
+              if (el.data.post_hint === "image")
+                return (
+                  <img key={el.data.id} alt={el.data.title} src={el.data.url} />
+                );
             })}
         </div>
       }

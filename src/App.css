@@ -49,5 +49,24 @@ body {
   justify-content: space-around;
 }
 
-#temp {
+.imageContainer {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  padding-right: 40px;
+  padding-left: 40px;
+}
+
+img {
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgb(39, 39, 61);
+  height: 400px;
+  object-fit: contain;
+}
+img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgb(66, 66, 102);
 }
