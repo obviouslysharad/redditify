@@ -13,6 +13,7 @@ const Memes = () => {
                 return (
                   <img key={el.data.id} alt={el.data.title} src={el.data.url} />
                 );
+              else return null;
             })}
         </div>
       }

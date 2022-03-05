@@ -1,26 +1,22 @@
 import React from "react";
 import { useWallpaperContext } from "../context/WallpapersContext";
-import { useTagContext } from "../context/TagContext";
 
 const Wallpapers = () => {
   const { wallpapers, fetchMemes } = useWallpaperContext();
-  let interval = null;
   const intersecob = new IntersectionObserver(([data]) => {
+    console.log("intersecob", data);
     data.isIntersecting && fetchMemes();
   });
 
-  React.useEffect(() => intersecob.observe(document.getElementById("lastEl")));
-  React.useEffect(() => console.log("with empty args", []));
+  // React.useEffect(() => intersecob.observe(document.getElementById("lastEl")));
 
   const renderWallpapers = (index, data) => {
-    console.log(index, wallpapers.length - 2);
     return index < wallpapers.length - 2 ? (
       <img
         key={data.data.id}
         id="hey"
         style={{
-          width: "400px",
-          height: "500px",
+          height: "calc(100vh - 200px)",
           boxShadow: "0px 0px 10px rgb(50, 43, 88)",
           borderRadius: "20px",
         }}
@@ -32,8 +28,7 @@ const Wallpapers = () => {
         key="data.data.id"
         id="lastEl"
         style={{
-          width: "400px",
-          height: "500px",
+          height: "calc(100vh - 200px)",
           boxShadow: "0px 0px 10px rgb(50, 43, 88)",
           borderRadius: "20px",
         }}
@@ -49,7 +44,8 @@ const Wallpapers = () => {
           id="imgbar"
           style={{
             display: "flex",
-            gap: "20px",
+            gap: "30px",
+            padding: "20px",
             flexWrap: "auto",
             marginLeft: "40px",
             overflow: "hidden",
@@ -69,17 +65,6 @@ const Wallpapers = () => {
           top: "0px",
           bottom: "0px",
           opacity: "0",
-        }}
-        onMouseOver={() => {
-          console.log("over here");
-          interval = setInterval(
-            () => (document.getElementById("imgbar").scrollLeft += 10),
-            50
-          );
-        }}
-        onMouseOut={() => {
-          console.log("out");
-          clearInterval(interval);
         }}
         onClick={() => {
           document.getElementById("imgbar").scrollLeft += 200;
