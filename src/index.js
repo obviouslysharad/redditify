@@ -5,7 +5,6 @@ import App from "./App";
 import ShowerThoughtsContext from "./context/ShowerThoughtsContext";
 import BeautifulDataContext from "./context/BeautifulDataContext";
 import TagContext from "./context/TagContext";
-import BlackMagicContext from "./context/BlackMagicContext";
 import MemeContext from "./context/MemeContext";
 import WallpaperContext from "./context/WallpapersContext";
 
@@ -14,13 +13,11 @@ ReactDOM.render(
     <TagContext>
       <WallpaperContext>
         <MemeContext>
-          <BlackMagicContext>
-            <BeautifulDataContext>
-              <ShowerThoughtsContext>
-                <App />
-              </ShowerThoughtsContext>
-            </BeautifulDataContext>
-          </BlackMagicContext>
+          <BeautifulDataContext>
+            <ShowerThoughtsContext>
+              <App />
+            </ShowerThoughtsContext>
+          </BeautifulDataContext>
         </MemeContext>
       </WallpaperContext>
     </TagContext>

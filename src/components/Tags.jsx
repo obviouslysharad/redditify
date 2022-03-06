@@ -29,14 +29,14 @@ const Tags = () => {
       >
         Beautiful Data
       </button>
-      <button
+      {/* <button
         className="btn"
         onClick={(e) => {
           tagClickedHandler(e);
         }}
       >
         Black Magic
-      </button>
+      </button> */}
       <button
         className="btn"
         onClick={(e) => {

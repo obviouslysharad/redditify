@@ -1,6 +1,5 @@
 import React from "react";
 import { useShowerThoughtsContext } from "../context/ShowerThoughtsContext";
-import "./ShowerThoughts.css";
 
 const ShowerThoughts = () => {
   const { showerThoughts } = useShowerThoughtsContext();
