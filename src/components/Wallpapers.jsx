@@ -1,6 +1,7 @@
 import React from "react";
 import { useWallpaperContext } from "../context/WallpapersContext";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { GoChevronLeft } from "react-icons/go";
 import { FiDownload } from "react-icons/fi";
 import Loading from "./Loading";
 
@@ -59,6 +60,23 @@ const Wallpapers = () => {
             marginLeft: "40px",
           }}
         >
+          <button
+            style={{
+              position: "fixed",
+              left: "5px",
+              top: "50%",
+              padding: "10px",
+              color: "white",
+              background: "transparent",
+              border: 0,
+              fontSize: "20px",
+            }}
+            onClick={() => {
+              document.getElementById("imgbar").scrollLeft -= 200;
+            }}
+          >
+            <GoChevronLeft />
+          </button>
           {wallpapers.map(
             (data, index) =>
               data.data.url.slice(data.data.url.length - 4) === ".png" && (
