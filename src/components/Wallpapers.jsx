@@ -9,30 +9,43 @@ const Wallpapers = () => {
   const { wallpapers, fetchMemes, isLoading } = useWallpaperContext();
   const lastElRef = React.useRef();
   const intersecob = new IntersectionObserver(([data]) => {
-    data.isIntersecting && fetchMemes();
+    if (data.isIntersecting) {
+      intersecob.unobserve(lastElRef.current);
+      console.log("fetched new memes");
+      fetchMemes();
+    }
   });
+
+  async function downloadImage(imageSrc) {
+    console.log("hi inside downloadimage");
+    const blob = new Blob([imageSrc.toString()]);
+    console.log(blob);
+    const url = window.URL.createObjectURL(blob);
+    console.log(url);
+  }
 
   React.useEffect(() => {
     if (lastElRef.current) {
       intersecob.observe(lastElRef.current);
     }
-  });
+  }, [wallpapers]);
 
-  if (isLoading) return <Loading isLoading={isLoading} />;
+  if (isLoading && !wallpapers) return <Loading isLoading={isLoading} />;
   const renderWallpapers = (index, data) => {
-    return index < wallpapers.length - 2 ? (
-      <a download="customfile.jpg" href={data.data.url} title="myimage">
-        <img
-          key={index}
-          style={{
-            height: "calc(100vh - 200px)",
-            boxShadow: "0px 0px 10px rgb(50, 43, 88)",
-            borderRadius: "20px",
-          }}
-          alt={data.data.title}
-          src={data.data.url}
-        />
-      </a>
+    return index < wallpapers.length - 5 ? (
+      <img
+        key={index}
+        style={{
+          height: "calc(100vh - 200px)",
+          boxShadow: "0px 0px 10px rgb(50, 43, 88)",
+          borderRadius: "20px",
+          minWidth: "250px",
+          minHeight: "500px",
+        }}
+        alt={data.data.title}
+        src={data.data.url}
+        onClick={() => downloadImage(data.data.url)}
+      />
     ) : (
       <img
         key={index}
@@ -53,7 +66,7 @@ const Wallpapers = () => {
         <div
           id="imgbar"
           style={{
-            overflow: "hidden",
+            overflowX: "scroll",
             display: "flex",
             gap: "30px",
             flexWrap: "auto",
@@ -72,7 +85,13 @@ const Wallpapers = () => {
               fontSize: "20px",
             }}
             onClick={() => {
-              document.getElementById("imgbar").scrollLeft -= 200;
+              let newinterval = setInterval(function () {
+                document.getElementById("imgbar").scrollLeft -= 7;
+              }, 1);
+
+              setTimeout(() => {
+                clearInterval(newinterval);
+              }, 250);
             }}
           >
             <GoChevronLeft />
@@ -125,7 +144,13 @@ const Wallpapers = () => {
           fontSize: "20px",
         }}
         onClick={() => {
-          document.getElementById("imgbar").scrollLeft += 200;
+          let newinterval = setInterval(function () {
+            document.getElementById("imgbar").scrollLeft += 7;
+          }, 1);
+
+          setTimeout(() => {
+            clearInterval(newinterval);
+          }, 250);
         }}
       >
         <MdOutlineArrowForwardIos />
