@@ -1,18 +1,22 @@
 import React from "react";
 import { Triangle } from "react-loader-spinner";
 
-const Loading = ({ isLoading }) => {
+const Loading = ({ loading }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "calc(100vh - 200px)",
-      }}
-    >
-      <Triangle color="#fff" />
-    </div>
+    <>
+      <div
+        style={{
+          position: "fixed",
+          opacity: "0.7",
+          background: "black",
+          height: "100vh",
+          width: "100vw",
+        }}
+      ></div>
+      <div style={{ position: "fixed", top: "50%", right: "50%" }}>
+        <Triangle color="#fff" />
+      </div>
+    </>
   );
 };
 

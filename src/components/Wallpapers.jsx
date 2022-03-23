@@ -1,40 +1,39 @@
 import React from "react";
-import { useWallpaperContext } from "../context/WallpapersContext";
+import { useFetchContext } from "../context/FetchContext";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { GoChevronLeft } from "react-icons/go";
 import { FiDownload } from "react-icons/fi";
 import Loading from "./Loading";
+import useIntersectionObserver from "./useIntersectionObserver";
 
-const Wallpapers = () => {
-  const { wallpapers, fetchMemes, isLoading } = useWallpaperContext();
-  const lastElRef = React.useRef();
-  const intersecob = new IntersectionObserver(([data]) => {
-    if (data.isIntersecting) {
-      intersecob.unobserve(lastElRef.current);
-      console.log("fetched new memes");
-      fetchMemes();
-    }
-  });
-
-  async function downloadImage(imageSrc) {
-    console.log("hi inside downloadimage");
-    const blob = new Blob([imageSrc.toString()]);
-    console.log(blob);
-    const url = window.URL.createObjectURL(blob);
-    console.log(url);
-  }
-
+const Wallpapers = ({ setLoading }) => {
+  const { wallpapers } = useFetchContext();
+  const lastElementRef = React.useRef();
+  const intersectionObserver = useIntersectionObserver(
+    wallpapers.setFetchData,
+    setLoading
+  );
   React.useEffect(() => {
-    if (lastElRef.current) {
-      intersecob.observe(lastElRef.current);
-    }
-  }, [wallpapers]);
+    intersectionObserver.observe(lastElementRef.current);
+    setLoading(false);
+  }, [wallpapers.data]);
 
-  if (isLoading && !wallpapers) return <Loading isLoading={isLoading} />;
+  // if (loading || wallpapers.length < 2) return <Loading loading={loading} />;
   const renderWallpapers = (index, data) => {
-    return index < wallpapers.length - 5 ? (
+    return index > wallpapers.length ? (
       <img
-        key={index}
+        style={{
+          height: "calc(100vh - 200px)",
+          boxShadow: "0px 0px 10px rgb(50, 43, 88)",
+          borderRadius: "20px",
+          width: "250px",
+          minHeight: "500px",
+        }}
+        alt={data.data.title}
+        src={data.data.url}
+      />
+    ) : (
+      <img
         style={{
           height: "calc(100vh - 200px)",
           boxShadow: "0px 0px 10px rgb(50, 43, 88)",
@@ -42,21 +41,9 @@ const Wallpapers = () => {
           minWidth: "250px",
           minHeight: "500px",
         }}
-        alt={data.data.title}
-        src={data.data.url}
-        onClick={() => downloadImage(data.data.url)}
-      />
-    ) : (
-      <img
-        key={index}
-        style={{
-          height: "calc(100vh - 200px)",
-          boxShadow: "0px 0px 10px rgb(50, 43, 88)",
-          borderRadius: "20px",
-        }}
         alt="data.data.title"
         src={data.data.url}
-        ref={lastElRef}
+        ref={lastElementRef}
       />
     );
   };
@@ -75,7 +62,7 @@ const Wallpapers = () => {
         >
           <button
             style={{
-              position: "fixed",
+              position: "absolute",
               left: "5px",
               top: "50%",
               padding: "10px",
@@ -86,22 +73,23 @@ const Wallpapers = () => {
             }}
             onClick={() => {
               let newinterval = setInterval(function () {
-                document.getElementById("imgbar").scrollLeft -= 7;
+                document.getElementById("imgbar").scrollLeft -= 10;
               }, 1);
 
               setTimeout(() => {
                 clearInterval(newinterval);
-              }, 250);
+              }, 300);
             }}
           >
             <GoChevronLeft />
           </button>
-          {wallpapers.map(
+          {wallpapers.data.map(
             (data, index) =>
               data.data.url.slice(data.data.url.length - 4) === ".png" && (
-                <div style={{ position: "relative" }}>
+                <div key={index}>
                   {renderWallpapers(index, data)}
                   <button
+                    key={index}
                     style={{
                       position: "absolute",
                       right: "5px",
@@ -114,19 +102,8 @@ const Wallpapers = () => {
                       fontSize: "20px",
                       cursor: "pointer",
                     }}
-                    onClick={() => {
-                      const url = window.URL.createObjectURL(
-                        new Blob([data.data.url])
-                      );
-                      const link = document.createElement("a");
-                      link.href = url;
-                      link.setAttribute("download", "image.jpg");
-                      document.body.appendChild(link);
-                      link.click();
-                    }}
-                  >
-                    <FiDownload />
-                  </button>
+                    onClick={(e) => {}}
+                  ></button>
                 </div>
               )
           )}
@@ -134,7 +111,7 @@ const Wallpapers = () => {
       )}
       <button
         style={{
-          position: "fixed",
+          position: "absolute",
           right: "10px",
           top: "50%",
           padding: "10px",
@@ -145,12 +122,12 @@ const Wallpapers = () => {
         }}
         onClick={() => {
           let newinterval = setInterval(function () {
-            document.getElementById("imgbar").scrollLeft += 7;
+            document.getElementById("imgbar").scrollLeft += 10;
           }, 1);
 
           setTimeout(() => {
             clearInterval(newinterval);
-          }, 250);
+          }, 300);
         }}
       >
         <MdOutlineArrowForwardIos />

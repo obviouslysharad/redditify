@@ -38,11 +38,9 @@ body {
   color: white;
   display: flex;
   align-items: center;
-  /* padding: 2px; */
   padding-left: 20px;
   font-size: 40px;
   cursor: pointer;
-  position: sticky;
   left: 0;
   right: 0;
 }
@@ -50,7 +48,6 @@ body {
   margin: 20px;
   display: flex;
   justify-content: space-around;
-  position: sticky;
   top: 0;
   left: 0px;
   right: 0px;

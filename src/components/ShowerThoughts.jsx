@@ -1,15 +1,40 @@
 import React from "react";
-import { useShowerThoughtsContext } from "../context/ShowerThoughtsContext";
+import { useFetchContext } from "../context/FetchContext";
+import useIntersectionObserver from "./useIntersectionObserver";
 
-const ShowerThoughts = () => {
-  const { showerThoughts } = useShowerThoughtsContext();
+const ShowerThoughts = ({ setLoading }) => {
+  const { showerThoughts } = useFetchContext();
+  const lastElementRef = React.useRef();
+  const otherRef = React.useRef();
+  const intersectionObserver = useIntersectionObserver(
+    showerThoughts.setFetchData,
+    setLoading
+  );
+  React.useEffect(() => {
+    console.log(showerThoughts.data);
+    intersectionObserver.observe(lastElementRef.current, setLoading);
+    setLoading(false);
+  }, [showerThoughts.data]);
   return (
     <div className="wrapper">
-      {showerThoughts.map((el) => (
-        <div className="grid" key={Math.random().toString(36).substr(0, 5)}>
-          {el}
-        </div>
-      ))}
+      {showerThoughts.data.map((el, index) => {
+        if (index != showerThoughts.data.length - 3)
+          return (
+            <div className="grid" key={Math.random().toString(36).substr(0, 5)}>
+              {el.data.title}
+            </div>
+          );
+        else
+          return (
+            <div
+              className="grid"
+              key={Math.random().toString(36).substr(0, 5)}
+              ref={lastElementRef}
+            >
+              {el.data.title}
+            </div>
+          );
+      })}
     </div>
   );
 };
