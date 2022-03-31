@@ -10,18 +10,17 @@ const Memes = ({ setLoading }) => {
     setLoading
   );
   React.useEffect(() => {
-    console.log(memes.data);
     intersectionObserver.observe(lastElementRef.current, setLoading);
     setLoading(false);
   }, [memes.data]);
   return (
     <div>
       {
-        <div className="imageContainer">
+        <div className="imageColContainer">
           {memes.data &&
             memes.data.map((el, index) => {
               if (el.data.post_hint === "image") {
-                if (index != memes.data.length - 1)
+                if (index !== memes.data.length - 1)
                   return (
                     <img
                       key={el.data.id}

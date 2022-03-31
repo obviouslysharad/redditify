@@ -2,8 +2,6 @@ import React from "react";
 import { useFetchContext } from "../context/FetchContext";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { GoChevronLeft } from "react-icons/go";
-import { FiDownload } from "react-icons/fi";
-import Loading from "./Loading";
 import useIntersectionObserver from "./useIntersectionObserver";
 
 const Wallpapers = ({ setLoading }) => {
@@ -18,7 +16,6 @@ const Wallpapers = ({ setLoading }) => {
     setLoading(false);
   }, [wallpapers.data]);
 
-  // if (loading || wallpapers.length < 2) return <Loading loading={loading} />;
   const renderWallpapers = (index, data) => {
     return index > wallpapers.length ? (
       <img

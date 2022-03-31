@@ -1,50 +1,41 @@
 import React from "react";
 import { useTagContext } from "../context/TagContext";
+import { motion } from "framer-motion";
 
 const Tags = () => {
-  const { tagClickedHandler } = useTagContext();
+  const { tagClickedHandler, tagClicked } = useTagContext();
+  let styled = (title) => {
+    return tagClicked === title ? "active" : "btn";
+  };
   return (
     <div className="tags">
-      <button
-        className="btn"
+      <motion.button
+        whileTap={{ scale: 0.9 }}
+        className={styled("Shower Thoughts")}
         onClick={(e) => {
           tagClickedHandler(e);
         }}
       >
         Shower Thoughts
-      </button>
-      <button
-        className="btn"
+      </motion.button>
+      <motion.button
+        whileTap={{ scale: 0.9 }}
+        className={styled("Memes")}
         onClick={(e) => {
           tagClickedHandler(e);
         }}
       >
         Memes
-      </button>
-      <button
-        className="btn"
-        onClick={(e) => {
-          tagClickedHandler(e);
-        }}
-      >
-        Beautiful Data
-      </button>
-      {/* <button
-        className="btn"
-        onClick={(e) => {
-          tagClickedHandler(e);
-        }}
-      >
-        Black Magic
-      </button> */}
-      <button
-        className="btn"
+      </motion.button>
+      <motion.button
+        whileTap={{ scale: 0.9 }}
+        className={styled("Wallpapers")}
         onClick={(e) => {
           tagClickedHandler(e);
         }}
       >
         Wallpapers
-      </button>
+      </motion.button>
     </div>
   );
 };
