@@ -2,17 +2,19 @@ import React from "react";
 import { useFetchContext } from "../context/FetchContext";
 import useIntersectionObserver from "./useIntersectionObserver";
 
-const Memes = ({ setLoading }) => {
+const Memes = ({ setLoading, loading }) => {
   const { memes } = useFetchContext();
   const lastElementRef = React.useRef();
   const intersectionObserver = useIntersectionObserver(
     memes.setFetchData,
     setLoading
   );
+  console.log("inside memes");
   React.useEffect(() => {
     intersectionObserver.observe(lastElementRef.current, setLoading);
-    setLoading(false);
-  }, [memes.data]);
+  });
+  // useEffect(() => {
+  // });
   return (
     <div>
       {
@@ -25,7 +27,7 @@ const Memes = ({ setLoading }) => {
                     <img
                       key={el.data.id}
                       alt={el.data.title}
-                      src={el.data.url}
+                      src={`//images.weserv.nl/?url=${el.data.url}`}
                     />
                   );
                 else
@@ -33,7 +35,7 @@ const Memes = ({ setLoading }) => {
                     <img
                       key={el.data.id}
                       alt={el.data.title}
-                      src={el.data.url}
+                      src={`//images.weserv.nl/?url=${el.data.url}`}
                       ref={lastElementRef}
                     />
                   );

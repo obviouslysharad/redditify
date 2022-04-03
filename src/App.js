@@ -39,7 +39,7 @@ function App() {
             stiffness: 10,
           }}
         >
-          <Memes setLoading={setLoading} />
+          <Memes setLoading={setLoading} loading={loading} />
         </motion.div>
       )}
       {tagClicked === "Wallpapers" && (

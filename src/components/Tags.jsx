@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const Tags = () => {
   const { tagClickedHandler, tagClicked } = useTagContext();
   let styled = (title) => {
-    return tagClicked === title ? "active" : "btn";
+    return tagClicked === title ? "active noSelect" : "btn noSelect";
   };
   return (
     <div className="tags">

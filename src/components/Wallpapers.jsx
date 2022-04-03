@@ -27,7 +27,7 @@ const Wallpapers = ({ setLoading }) => {
           minHeight: "500px",
         }}
         alt={data.data.title}
-        src={data.data.url}
+        src={`//images.weserv.nl/?url=${data.data.url}`}
       />
     ) : (
       <img
@@ -39,7 +39,7 @@ const Wallpapers = ({ setLoading }) => {
           minHeight: "500px",
         }}
         alt="data.data.title"
-        src={data.data.url}
+        src={`//images.weserv.nl/?url=${data.data.url}`}
         ref={lastElementRef}
       />
     );

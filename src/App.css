@@ -5,6 +5,17 @@ body {
   background-color: #101011;
   font-family: "Dongle", sans-serif;
   font-size: 30px;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body:focus {
+  outline: none !important;
 }
 
 .btn {
@@ -105,4 +116,19 @@ img:hover {
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(41, 34, 58);
   border: 1px solid rgb(89, 78, 119);
+}
+
+@media (max-width: 500) {
+  .btn {
+    padding: 20px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 500) {
+  .header {
+    height: 110px;
+    font-size: 65px;
+    margin-bottom: 50px;
+  }
 }
