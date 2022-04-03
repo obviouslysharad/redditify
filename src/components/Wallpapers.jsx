@@ -5,6 +5,12 @@ import { GoChevronLeft } from "react-icons/go";
 import useIntersectionObserver from "./useIntersectionObserver";
 
 const Wallpapers = ({ setLoading }) => {
+  const wallpaperStyle = {
+    boxShadow: "0px 0px 10px rgb(50, 43, 88)",
+    borderRadius: "20px",
+    minWidth: "250px",
+    minHeight: "500px",
+  };
   const { wallpapers } = useFetchContext();
   const lastElementRef = React.useRef();
   const intersectionObserver = useIntersectionObserver(
@@ -19,26 +25,14 @@ const Wallpapers = ({ setLoading }) => {
   const renderWallpapers = (index, data) => {
     return index > wallpapers.length ? (
       <img
-        style={{
-          height: "calc(100vh - 200px)",
-          boxShadow: "0px 0px 10px rgb(50, 43, 88)",
-          borderRadius: "20px",
-          width: "250px",
-          minHeight: "500px",
-        }}
+        style={wallpaperStyle}
         alt={data.data.title}
         src={`//images.weserv.nl/?url=${data.data.url}`}
       />
     ) : (
       <img
-        style={{
-          height: "calc(100vh - 200px)",
-          boxShadow: "0px 0px 10px rgb(50, 43, 88)",
-          borderRadius: "20px",
-          minWidth: "250px",
-          minHeight: "500px",
-        }}
-        alt="data.data.title"
+        style={wallpaperStyle}
+        alt={data.data.title}
         src={`//images.weserv.nl/?url=${data.data.url}`}
         ref={lastElementRef}
       />
@@ -50,11 +44,12 @@ const Wallpapers = ({ setLoading }) => {
         <div
           id="imgbar"
           style={{
-            overflowX: "scroll",
+            overflow: "hidden",
             display: "flex",
             gap: "30px",
             flexWrap: "auto",
             marginLeft: "40px",
+            marginTop: "40px",
           }}
         >
           <button
@@ -75,7 +70,7 @@ const Wallpapers = ({ setLoading }) => {
 
               setTimeout(() => {
                 clearInterval(newinterval);
-              }, 300);
+              }, 100);
             }}
           >
             <GoChevronLeft />
@@ -124,7 +119,7 @@ const Wallpapers = ({ setLoading }) => {
 
           setTimeout(() => {
             clearInterval(newinterval);
-          }, 300);
+          }, 100);
         }}
       >
         <MdOutlineArrowForwardIos />

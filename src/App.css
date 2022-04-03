@@ -68,7 +68,8 @@ body:focus {
 img {
   border-radius: 10px;
   box-shadow: 0 0 20px rgb(46, 46, 75);
-  height: 500px;
+  min-height: 200px;
+  max-height: 400px;
   min-width: 200px;
 }
 img:hover {
