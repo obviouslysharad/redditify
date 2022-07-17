@@ -44,7 +44,6 @@ const Wallpapers = ({ setLoading }) => {
         <div
           id="imgbar"
           style={{
-            overflow: "hidden",
             display: "flex",
             gap: "30px",
             flexWrap: "auto",
