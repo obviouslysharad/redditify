@@ -39,7 +39,7 @@ const Wallpapers = ({ setLoading }) => {
     );
   };
   return (
-    <div>
+    <div style = {{overflowX: "auto"}}>
       {wallpapers && (
         <div
           id="imgbar"
