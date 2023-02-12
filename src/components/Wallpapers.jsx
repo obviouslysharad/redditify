@@ -3,6 +3,7 @@ import { useFetchContext } from "../context/FetchContext";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { GoChevronLeft } from "react-icons/go";
 import useIntersectionObserver from "./useIntersectionObserver";
+import { saveAs } from "file-saver"
 
 const Wallpapers = ({ setLoading }) => {
   const wallpaperStyle = {
@@ -28,6 +29,8 @@ const Wallpapers = ({ setLoading }) => {
         style={wallpaperStyle}
         alt={data.data.title}
         src={`//images.weserv.nl/?url=${data.data.url}`}
+        onClick={() =>
+          saveAs(data?.data?.url, data.data.title)}
       />
     ) : (
       <img
@@ -35,11 +38,13 @@ const Wallpapers = ({ setLoading }) => {
         alt={data.data.title}
         src={`//images.weserv.nl/?url=${data.data.url}`}
         ref={lastElementRef}
+        onClick={() =>
+          saveAs(data?.data?.url, data.data.title)}
       />
     );
   };
   return (
-    <div style = {{overflowX: "auto"}}>
+    <div style={{ overflowX: "auto" }}>
       {wallpapers && (
         <div
           id="imgbar"
@@ -74,7 +79,7 @@ const Wallpapers = ({ setLoading }) => {
           >
             <GoChevronLeft />
           </button>
-          {wallpapers.data.map(
+          {wallpapers?.data?.map(
             (data, index) =>
               data.data.url.slice(data.data.url.length - 4) === ".png" && (
                 <div key={index}>
@@ -93,7 +98,7 @@ const Wallpapers = ({ setLoading }) => {
                       fontSize: "20px",
                       cursor: "pointer",
                     }}
-                    onClick={(e) => {}}
+                    onClick={(e) => { }}
                   ></button>
                 </div>
               )
